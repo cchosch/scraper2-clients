@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "required": ["url", "name", "paid"],
+    "properties": {
+        "url": {"type": "string"},
+        "name": {"type": "string"},
+        "paid": {"type": "boolean"}
+    }
+}
