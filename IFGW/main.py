@@ -19,9 +19,11 @@ if len(sys.argv) < 2:
     print("pass category name as argument")
     quit()
 
-cl_headers = {}
+ifgw_config = {}
 with open("./IFGW/client.json") as f:
-    cl_headers = json.load(f)["headers"]
+    ifgw_config = json.load(f)
+ifgw_config["url"] = ifgw_config["url"].rjust(1, "/")
+cl_headers = ifgw_config["headers"]
 
 proxies = {
     "https": base.get_prox_url()
@@ -133,8 +135,8 @@ def binary_search_len(page_fmt: str, cat:str=None):
 
     return [page_fmt.format(page=i) for i in range(found[1])]
     
-srch = "https://influencersgonewild.com/page/{page}/?s={cate}"
-ct = "https://influencersgonewild.com/category/{cate}/page/{page}/"
+srch = ifgw_config["url"] + "page/{page}/?s={cate}"
+ct = ifgw_config["url"] + "category/{cate}/page/{page}/"
 def download_category(cat: str):
     urls = binary_search_len(ct.format(page="{page}", cate=cat), cat)
     for u in urls:
