@@ -4,6 +4,9 @@
     "properties": {
         "url": {"type": "string"},
         "name": {"type": "string"},
-        "paid": {"type": "boolean"}
+        "paid": {"type": "boolean"},
+        "args": {
+            "type": "array"
+        }
     }
 }
