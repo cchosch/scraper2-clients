@@ -3,7 +3,7 @@ import datetime
 
 import requests
 
-prod = False
+prod = True
 config = {}
 with open("./config.json") as f:
     config = json.load(f)
