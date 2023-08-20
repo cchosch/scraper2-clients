@@ -1,0 +1,7 @@
+{
+    "$schema": "../schema.json",
+    "url": "https://onlyfans.com",
+    "name": "Onlyfans",
+    "paid": true,
+    "headers":{"user-id":"257771994","sec-ch-ua":"\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\"","time":"1692403995557","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36","app-token":"33d57ade8c02dbc5a333db99ff9ae26a","accept":"application/json, text/plain, */*","x-bc":"9310489ba312949b820b138b5c3e9bcb3fad0a9e","sign":"10065:931b1ffc6ac0e0fc68dd6dadeeae794d505e7b55:db8:64df644d","sec-ch-ua-platform":"\"macOS\"","sec-fetch-site":"same-origin","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"https://onlyfans.com/aubreerene","accept-encoding":"gzip, deflate, br","accept-language":"en-US,en;q=0.9","cookie":"csrf=xcykv1zt7f770d5a77aa15ca40a43297d4af4bf6; __stripe_mid=3c80bf90-d246-4ae5-be99-5d145dc0928d12d73d; cookiesAccepted=all; lang=en; c=7573012-109%2C310659704-193%2C6504020-63%2C264023003-234%2C5486474-24%2C209572873-23; fp=9310489ba312949b820b138b5c3e9bcb3fad0a9e; sess=lqi63s11hk64qv2471kg3g9k1n; auth_id=257771994; st=cd8aa3005d24b9958dd74722c0adf30b5d2a14b2b3f9f703faa3a6f85a289158; ref_src="}
+}

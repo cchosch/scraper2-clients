@@ -14,22 +14,18 @@ try:
 except ImportError:
     import base
 
-if len(sys.argv) < 2:
-    print(sys.argv)
-    print("pass category name as argument")
-    quit()
-
 ifgw_config = {}
 with open("./IFGW/client.json") as f:
     ifgw_config = json.load(f)
 
-ifgw_config["url"] = ifgw_config["url"].rjust(1, "/")
+if ifgw_config["url"][-1] != "/":
+    ifgw_config["url"] = ifgw_config["url"]+"/"
 cl_headers = ifgw_config["headers"]
 
 sc = base.ScraperClient(base.get_prox_url(), download_headers=cl_headers)
 
 def download_results_page(url: str, name: str):
-    res = sc.load_webpage(url)
+    res = sc.load_url(url)
     if res is None:
         quit()
 
@@ -46,7 +42,7 @@ def download_results_page(url: str, name: str):
 
 def download_article(url: str, name: str):
     folder = name.replace("-", " ")
-    res = sc.load_webpage(url)
+    res = sc.load_url(url)
     if res is None:
         quit()
     soup = BeautifulSoup(res.text, features="html.parser")

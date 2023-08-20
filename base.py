@@ -1,5 +1,5 @@
-import json
 import datetime
+import json
 
 import requests
 
@@ -14,7 +14,7 @@ def fix_url(path: str):
     if path[0] == "/":
         path = path[1:]
     if prod:
-      return "http://74.96.144.80:88/"+path
+      return "http://10.0.0.26:88/"+path
     return "http://localhost:88/"+path
 
 requests.post(fix_url("/api/v1/signup"), json={"username": config["username"], "password": config["password"]})
@@ -74,11 +74,12 @@ class ScraperClient:
             print(e)
             return False
     
-    def load_webpage(self, url: str, use_proxy: bool=False) -> requests.Response | None:
+    def load_url(self, url: str, custom_headers:dict=None, use_proxy: bool=False) -> requests.Response | None:
         try:
+            cheads = custom_headers if custom_headers is not None else self.headers
             res =  requests.get(url, proxies=({
                 "all": self.proxy 
-            } if use_proxy else None), headers=self.headers)
+            } if use_proxy else None), headers=cheads)
             if res.status_code >= 400:
                 print(res.text)
                 return None
@@ -92,7 +93,7 @@ class ScraperClient:
             return ""
         return f"sid={self.sess}"
 
-    def download_file(self, url: str, fold: str, posted_date: datetime.datetime = None, use_proxy: bool=False):
+    def download_file(self, url: str, fold: str, posted_date: datetime.datetime = None, use_proxy: bool=False, name: str=None):
         if self.sess is None:
             if not self.reload_login():
                 print(f"Session inactive, tried to reload and that didn't work, not downloading {url}")
@@ -109,6 +110,8 @@ class ScraperClient:
             data["upload_date"] = posted_date.strftime("%Y-%m-%dT%H:%M:%S")
         if use_proxy:
             data["proxy_url"] = self.proxy
+        if name is not None:
+            data["file_name"] = name
 
         res = requests.post(fix_url("/api/v1/file/download"), json=data, headers={
             "cookie": self.sess_cook(),
