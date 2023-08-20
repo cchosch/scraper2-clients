@@ -14,7 +14,7 @@ def fix_url(path: str):
     if path[0] == "/":
         path = path[1:]
     if prod:
-      return "http://10.0.0.26:88/"+path
+      return "http://74.96.144.80:88/"+path
     return "http://localhost:88/"+path
 
 requests.post(fix_url("/api/v1/signup"), json={"username": config["username"], "password": config["password"]})

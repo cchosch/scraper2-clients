@@ -100,6 +100,7 @@ def get_of_link(url: str) -> requests.Response | None:
     return sc.load_url(url, create_signed_headers(url), True)
 
 def user_from_name(username: str):
+    print(f"getting {username}")
     return get_of_link(api(f"users/{username}")).json()
 
 def get_all_media(user: dict):
