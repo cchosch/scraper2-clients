@@ -51,7 +51,7 @@ def download_article(url: str, name: str):
 
     if video is not None:
         vid_src: str = video.findChild("source").get("src")
-        for bad_cdn in ["cdn03", "cdn02", "cdn01"]:
+        for bad_cdn in ["cdn03", "cdn02", "cdn01", "cdn07"]:
             if bad_cdn in vid_src:
                 vid_src = vid_src.replace(bad_cdn, "cdn04")
         sc.download_file(vid_src, folder+"/videos", posted_date=upload_timestamp)
@@ -59,7 +59,12 @@ def download_article(url: str, name: str):
 
     images = soup.select("img.alignnone.size-full")
     for img in images:
-        sc.download_file(img.get("data-src"), folder+"/images", posted_date=upload_timestamp)
+        sc.download_file(complete_url(img.get("data-src")), folder+"/images", posted_date=upload_timestamp)
+
+def complete_url(u: str) -> str:
+    if not u.startswith("/"):
+        return u
+    return ifgw_config["url"] + u
 
 def binary_search_len(page_fmt: str, cat:str=None):
     now = 10
